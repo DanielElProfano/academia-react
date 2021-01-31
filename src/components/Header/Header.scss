@@ -1,0 +1,29 @@
+.b-header{
+    height: 80px;
+    background-color: lightskyblue;;
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    &__left{
+        flex: 1;
+        padding: 2rem;
+    }
+    &__nav{
+        display: flex;
+        list-style: none;
+    }
+    &__right{
+        flex:2;
+        display: flex;
+        justify-content: flex-end;
+    }
+    &__menu{
+        padding-right: 3rem;
+        cursor: pointer;
+        &--logout{
+            color:white;
+            
+        }
+    }
+}
