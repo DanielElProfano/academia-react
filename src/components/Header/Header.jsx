@@ -19,8 +19,9 @@ const Header = (props) => {  //navBar
             <div className="b-header__left">
                 <span>ACADEMIA</span>
             </div><p>Hello {props.user.name}</p>
-            {getNavbar(props.user.rol)}
-                    
+            
+            <div className="b-header__right">{getNavbar(props.user.rol)}
+            </div>       
         </div>
     )
 }

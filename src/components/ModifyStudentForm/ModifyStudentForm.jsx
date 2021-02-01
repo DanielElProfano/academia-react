@@ -1,7 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-
-import './ModifyProfessorForm.scss';
+import './ModifyStudentForm.scss';
 
 const RESET_FORM = {
     name:'',
@@ -10,15 +8,15 @@ const RESET_FORM = {
     mail:''
 }
 
-const ModifyProfessorForm = (props) => {
-    const {name, lastName, age, mail} = props.professor;
+const ModifyStudentForm = (props) => {
+    const {name, lastName, age, mail} = props.student;
   
     const [nameState, setNameState] = useState(name)
     const [lastnameState, setLastnameState] = useState(lastName);
     const [ageState, setAgeState] = useState(age);
     const [mailState, setMailState] = useState(mail);
     
-    const handleProfessorForm = (event) => {
+    const handleStudentForm = (event) => {
         
         const { name, value } = event.target;
         if (name === 'mail'){
@@ -35,13 +33,13 @@ const ModifyProfessorForm = (props) => {
     }
     const submitForm = (event) => {
         event.preventDefault();
-        const isModify = { ...props.professor,
+        const isModify = { ...props.student,
             name : nameState,
             lastName : lastnameState,
             age : ageState,
             mail : mailState
         }
-        props.modifiedProfessor(isModify)
+        props.modifiedStudent(isModify)
     }
     return(
         <div className="">
@@ -51,34 +49,33 @@ const ModifyProfessorForm = (props) => {
                         <label for="name">Name: </label>
                         <input type="text" 
                             name="name"
-                            onChange={handleProfessorForm} value={nameState}></input>
+                            onChange={handleStudentForm} value={nameState}></input>
                     
                         <label for="lastName">Lastname: </label>
                         <input name="lastName" 
                                 type="text" 
-                                onChange={handleProfessorForm}
+                                onChange={handleStudentForm}
                                 value={lastnameState}></input>
                     
                         <label for="mail">Email: </label>
                             <input name="mail" 
                                 type="text"
-                                onChange={handleProfessorForm}
+                                onChange={handleStudentForm}
                                 value={mailState}></input>
                         
                         <label for="age">Age: </label>
                             <input name="age" 
                                 type="text"
-                                onChange={handleProfessorForm}  
+                                onChange={handleStudentForm}  
                                 value={ageState}></input>
                         
                 </fieldset>
-                <input type="submit" onCLick={handleProfessorForm} value="Modify"></input>
+                <input type="submit" onCLick={handleStudentForm} value="Modify"></input>
                 {/* < href="/professor/show">Cancel</Link> */}
             </form>
 
         </div>
     )
-    
 }
 
-export default ModifyProfessorForm;
+export default ModifyStudentForm;

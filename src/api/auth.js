@@ -1,31 +1,9 @@
 const loginUrl = "http://localhost:4000/login";
 const checkSessionUrl = "http://localhost:4000/auth/check-session";
 const logoutUrl = "http://localhost:4000/login/logout";
-// export const register = async (userData) => {
-//   const request = await fetch(registerUrl, {
-//     method: "POST",
-//     headers: {
-//       "Accept": "application/json",
-//       "Content-Type":"application/json",
-//       'Access-Control-Allow-Credentials': true,
-//       "Access-Control-Allow-Origin": "*",
-//     },
-//     credentials: 'include',
-//     body: JSON.stringify(userData),
-//   })
-
-  
-//   const response = await request.json();
-
-//   if(!request.ok) {
-//     throw new Error(response.message);
-//   }
-
-//   return response;
-// };
 
 export const login = async userData => {
- 
+  debugger
   const request = await fetch(loginUrl, {
     method: "POST",
     headers: {

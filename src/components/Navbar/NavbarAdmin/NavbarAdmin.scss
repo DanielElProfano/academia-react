@@ -1,0 +1,16 @@
+.b-nav{
+
+    &__menu{
+        background-color: lightseagreen;
+        cursor: pointer;
+        
+    }
+    &__option{
+        background-color: rgb(241, 161, 241);
+        list-style: none;
+        display: none;
+        &:hover{
+            display: block;
+        }
+    }
+}

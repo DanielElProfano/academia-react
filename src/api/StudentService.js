@@ -1,29 +1,10 @@
-const professorList = 'http://localhost:4000/professor/show';
-const handleProfessorURL = 'http://localhost:4000/professor/';
+const studentList = 'http://localhost:4000/student/show';
+const handleStudentURL = 'http://localhost:4000/student/';
 
 
-export const allProfessors = async() => {
+export const allStudents = async() => {
     
-    const request = await fetch(professorList, {
-      method: "GET",
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Credentials": true,
-      },
-      credentials: 'include',
-    })
-    const response = await request.json();
-    if(!request.ok) {
-      return new Error(response.message);
-    }
-    return response;
-  }
-
-  export const deleteProfessorService = async(id) => {
-    debugger
-    const request = await fetch(`${handleProfessorURL}${id}/delete`, {
+    const request = await fetch(studentList, {
       method: "GET",
       headers: {
         "Accept": "application/json",
@@ -34,6 +15,28 @@ export const allProfessors = async() => {
       credentials: 'include',
       
     })
+    
+    const response = await request.json();
+    console.log(response)
+    if(!request.ok) {
+      return new Error(response.message);
+    }
+    return response;
+  }
+  export const deleteStudentService = async(id) => {
+    debugger
+    const request = await fetch(`${handleStudentURL}${id}/delete`, {
+      method: "GET",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Credentials": true,
+      },
+      credentials: 'include',
+      
+    })
+    
     const response = await request.json();
     if(!request.ok) {
       return new Error(response.message);
@@ -41,8 +44,8 @@ export const allProfessors = async() => {
     return response;
   }
 
-  export const getModifyProfessorService = async id => {
-    const request = await fetch(`${handleProfessorURL}${id}/modify`, {
+  export const getModifyStudentService = async id => {
+    const request = await fetch(`${handleStudentURL}${id}/modify`, {
       method: "GET",
       headers: {
         "Accept": "application/json",
@@ -57,12 +60,12 @@ export const allProfessors = async() => {
     if(!request.ok) {
       return new Error(response.message);
     }
-  
+   
     return response;
   }
 
-  export const postModifyProfessorService = async professor => {
-    const request = await fetch(`${handleProfessorURL}/modify`, {
+  export const postModifyStudentService = async student => {
+    const request = await fetch(`${handleStudentURL}/modify`, {
     method: "POST",
     headers: {
       "Accept": "application/json",
@@ -71,7 +74,7 @@ export const allProfessors = async() => {
       "Access-Control-Allow-Credentials": true,
     },
     credentials: 'include',
-    body: JSON.stringify(professor),
+    body: JSON.stringify(student),
     })
     const response = await request.json();
     if(!request.ok) {
