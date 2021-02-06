@@ -18,12 +18,5 @@
         display: flex;
         justify-content: flex-end;
     }
-    &__menu{
-        padding-right: 3rem;
-        cursor: pointer;
-        &--logout{
-            color:white;
-            
-        }
-    }
+   
 }

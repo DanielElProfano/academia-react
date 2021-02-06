@@ -1,5 +1,18 @@
 const professorList = 'http://localhost:4000/professor/show';
 const handleProfessorURL = 'http://localhost:4000/professor/';
+const newProfessorURL = 'http://localhost:4000/professor/create';
+
+let GET = {   method: "GET",
+  headers: {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Credentials": true,
+  },
+  credentials: 'include',
+  body: JSON.stringify(),
+}
+
 
 
 export const allProfessors = async() => {
@@ -22,7 +35,7 @@ export const allProfessors = async() => {
   }
 
   export const deleteProfessorService = async(id) => {
-    debugger
+    
     const request = await fetch(`${handleProfessorURL}${id}/delete`, {
       method: "GET",
       headers: {
@@ -77,5 +90,47 @@ export const allProfessors = async() => {
     if(!request.ok) {
       return new Error(response.message);
     }
+  return response;
+}
+  export const getDetailsProfessorService = async id => {
+
+    const request = await fetch(`${handleProfessorURL}${id}/modify`,  { 
+    method: "GET",
+    headers: {
+      "Accept": "application/json",
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Credentials": true,
+    },
+    credentials: 'include',
+    body: JSON.stringify(),
+    })
+    const response = await request.json();
+    if(!request.ok) {
+      return new Error(response.message);
+    }
+    return response;
+  }
+
+  export const createProfessorService = async professor => {
+    
+    const request = await fetch(newProfessorURL, {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Credentials": true,
+      },
+      credentials: 'include',
+      body: JSON.stringify(professor),
+  })
+
+  const response = await request.json();
+  
+  if(!request.ok) {
+    return new Error(response.message);
+  }
+
   return response;
 }

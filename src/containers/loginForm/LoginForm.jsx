@@ -10,8 +10,14 @@ const INITIAL_STATE = {
   error: "",
 };
 
+
 class LoginForm extends Component {
-  state = INITIAL_STATE;
+  constructor(){
+    super()  
+    this.hasUser = false;
+
+  }
+    state = INITIAL_STATE;
 
   handleSubmitForm = async ev => {
       ev.preventDefault();
@@ -20,7 +26,7 @@ class LoginForm extends Component {
         const data = await login(this.state);
         console.log('LOGIN COMPLETADO', data);
         this.props.logUser(data);
-        this.setState(INITIAL_STATE);
+              this.setState(INITIAL_STATE);
       } catch(error) {
         this.setState({ error: error.message });
       }
@@ -33,7 +39,9 @@ class LoginForm extends Component {
 
   render() {
     return (
+      
       <div className="b-loginform">
+      {!this.state.hasUser &&
         <form className="b-loginform__form" onSubmit={this.handleSubmitForm}>
           <h1 className="b-loginform__title">Login</h1>
           <label htmlFor="mail">
@@ -63,7 +71,7 @@ class LoginForm extends Component {
           <div style={{ marginTop: '20px' }}>
               <button className="b-loginform__button" type="submit">Login</button>
           </div>
-        </form>
+        </form>}
       </div>
     );
   }

@@ -1,5 +1,20 @@
-.b-table__list{
-    list-style: none;
-    width: 80%;
-    padding: 0
+.b-table{
+    display: flex;
+    margin: 1rem 2rem;
+    &__header{
+        background-color: rgb(206, 233, 250);
+        color: white;
+        padding: 1rem;
+        min-width: 150px;
+        &--mod{
+            background-color: lightyellow;
+        }
+        &--del{
+            background-color: lightcoral;
+        }
+        &--shw{
+            background-color: lightpink;
+        }
+    }
+    
 }

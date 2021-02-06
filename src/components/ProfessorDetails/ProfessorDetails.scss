@@ -1,0 +1,11 @@
+.b-details{
+    border: 1px solid lightgray;
+    &__header{
+        background-color: lightcoral;
+        color: white;
+    }
+    &__personal{
+        display: flex;
+    }
+   
+}

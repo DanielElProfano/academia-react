@@ -1,28 +1,28 @@
 .b-table{
-    display: flex;
-    justify-content: center;
-    border: 1px solid gray;
-    margin: 1rem 2rem;
-    &__header{
-        background-color: lightskyblue;
-        color: white;
-        padding: 1rem;
-        &--mod{
-            background-color: lightyellow;
-        }
-        &--del{
-            background-color: lightcoral;
-        }
-        &--shw{
-            background-color: lightpink;
-        }
+    &__content{
+       max-width: 800px;
+        word-wrap: normal;
     }
+       
+    
     &__img{
         width: 100px;
         object-fit: cover;
     }
-    &__content{
-        word-wrap: normal;
-    }
+    &__icon{
+        font-size: 1.2rem;
+        padding: 1rem;
+        cursor:pointer;
 
+        &--mod{
+            color: blue;
+        }
+        &--del{
+            color: red;
+
+        }
+        &--dtl{
+            color:green;
+        }
+    }
 }

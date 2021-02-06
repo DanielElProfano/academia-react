@@ -1,4 +1,5 @@
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash, faInfo, faTable} from '@fortawesome/free-solid-svg-icons';
 import './ProfessorCard.scss'
 
 const ProfessorCard = (props) => {
@@ -10,45 +11,23 @@ const ProfessorCard = (props) => {
     const modifyProfessor = () =>{
         props.modifyProfessor(_id);
     }
+    const detailsProfessor = () => {
+        props.detailsProfessor(_id);
+    }
     return(
-        <div className="b-table">
-           <table className="b-table__container">
-                <thead className="b-table__header">
-                    <tr>
-                        <th className="b-table__header">Image</th>
-                        <th className="b-table__header">Name</th>
-                        <th className="b-table__header">Lastname</th>
-                        <th className="b-table__header">Mail</th>
-                        <th className="b-table__header">Age</th>
-                        <th className="b-table__header">Education</th>
-                        <th className="b-table__header">Course</th>
-                        <th className="b-table__header--mod">Modify</th>
-                        <th className="b-table__header--del">Delete</th>
-                        <th className="b-table__header--shw">Details</th>
-                    </tr>
-                </thead>
-
-                
-                <tbody>
-                    <tr>
-                        <td className="b-table__content"><img className="b-table__img" src={photo} alt="Professor"></img></td>
-                        <td className="b-table__content">{ name }</td>
-                        <td className="b-table__content">{ lastName }</td>
-                        <td className="b-table__content">{ mail }</td>
-                        <td className="b-table__content">{ education }</td>
-                        <td className="b-table__content">{ age }</td>
-                        <td className="b-table__content">{ subjects }</td>
-                        <td className="b-table__content">{ rol }</td>
-                        <td onClick={modifyProfessor}>modify</td>
-                        <td onClick={deleteProfessor}>delete</td>
-                        <td><a href="/professor/{{this._id}}/students">detail</a></td>
-                    </tr> 
-     
-                </tbody>
-                
-
-            </table>    
-        </div>
+       <>
+            <td className="b-table__content"><img className="b-table__img" src={photo} alt="Professor"></img></td>
+            <td className="b-table__content">{ name }</td>
+            <td className="b-table__content">{ lastName }</td>
+            <td className="b-table__content">{ mail }</td>
+            <td className="b-table__content">{ education }</td>
+            <td className="b-table__content">{ age }</td>
+            <td className="b-table__content">{ subjects }</td>
+            <td className="b-table__content">{ rol }</td>
+            <td className="b-table__icon b-table__icon--mod" onClick={modifyProfessor}><FontAwesomeIcon icon={faTable} /></td>
+            <td className="b-table__icon b-table__icon--del" onClick={deleteProfessor}><FontAwesomeIcon icon={faTrash} /></td>
+            <td className="b-table__icon b-table__icon--dtl" onClick={detailsProfessor}><FontAwesomeIcon icon={faInfo}/></td>
+        </>  
     )
 }
 

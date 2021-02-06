@@ -82,3 +82,21 @@ export const allStudents = async() => {
     }
   return response;
 }
+export const getDetailsStudentService = async id => {
+  const request = await fetch(`${handleStudentURL}${id}/modify`,  { 
+  method: "GET",
+  headers: {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Credentials": true,
+  },
+  credentials: 'include',
+  body: JSON.stringify(),
+  })
+  const response = await request.json();
+  if(!request.ok) {
+    return new Error(response.message);
+  }
+  return response;
+}
