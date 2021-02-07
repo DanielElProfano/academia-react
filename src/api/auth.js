@@ -14,9 +14,7 @@ export const login = async userData => {
     credentials: 'include',
     body: JSON.stringify(userData),
   })
- 
   const response = await request.json();
-  debugger
   delete response.password;
   if(!request.ok) {
     return new Error(response.message);

@@ -64,6 +64,10 @@ const Student = (props) => {
     }
 
     return(
+    <>
+        <div className="b-course__title">
+            <h2 className="b-course__title">All Students</h2>
+        </div>
         <div className="b-table">
             <table className="b-table__container">
                 <thead className="b-table__headcontainer">
@@ -97,17 +101,6 @@ const Student = (props) => {
                     
                 </tbody>
             </table>
-            {/* {student && <div>
-                <ModifyStudentForm 
-                    student={student}
-                    modifiedStudent={modifiedStudent}                        
-                    />
-            </div>}
-            {detailsStudentView && <div>
-                <studentDetails
-                    detailsStudentView={detailsStudentView}/>
-                    
-            </div>} */}
             <Modal isOpen={isModalOpen}>
               <ModalHeader>{modifyModal ? <span>Mofify</span>:<span>Deatils</span>} </ModalHeader>
                <ModalBody>
@@ -132,6 +125,7 @@ const Student = (props) => {
               </ModalFooter>
               </Modal>
         </div>
+    </>
     )
 }
 export default Student;

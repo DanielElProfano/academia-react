@@ -55,21 +55,23 @@ const Professor  = (props) => {
         setModalOpen(!isModalOpen);
         professorList();
     }
+
     const detailsProfessor = async (user) => {
        
         const data = await getDetailsProfessorService(user);
         setDetailsProfessorView(data);
         setModalOpen(!isModalOpen);
     }
-    const createdProfessor = async (user) => {
-        console.log("hola professor");
-    }
-  
+   
     const toggleModal = () => {
         setModalOpen(!isModalOpen);
     }
 
     return (
+        <>
+        <div className="b-course__title">
+            <h2 className="b-course__title">All Professor</h2>
+        </div>
         <div className="b-table">
             <table className="b-table__container">
                 <thead className="b-table__headcontainer">
@@ -104,15 +106,15 @@ const Professor  = (props) => {
             </table>
             
             <Modal isOpen={isModalOpen}>
-              <ModalHeader>{modifyModal ? <span>Mofify</span>:<span>Deatils</span>} </ModalHeader>
+              <ModalHeader>{modifyModal ? <span>Mofify</span>:<span>Details</span>} </ModalHeader>
                <ModalBody>
-               {detailsProfesorView && <div>
-                        <ProfessorDetails
-                            detailsProfesorView={detailsProfesorView}/>
+               {!modifyModal && <div>
+                    <ProfessorDetails
+                    detailsProfesorView={detailsProfesorView}/>
                     
                     </div>}
-                {modifyModal && <div>
-                <ModifyProfessorForm
+                    {modifyModal && <div>
+                    <ModifyProfessorForm
                     professor={professor}
                     modifiedProfessor={modifiedProfessor} //esta prop recibe el professor modificado
                 />
@@ -120,7 +122,7 @@ const Professor  = (props) => {
                </ModalBody>
                    
                <ModalFooter>
-                <Button color="primary" onClick={toggleModal}>Accept</Button>
+                {!modifyModal && <Button color="primary" onClick={toggleModal}>Accept</Button>}
                 {!detailsProfesorView && 
                     <Button color="secundary" onClick={toggleModal}>Cancel</Button>}
                 
@@ -128,6 +130,7 @@ const Professor  = (props) => {
               </Modal>
           
         </div>
+     </>   
        
         )
     }

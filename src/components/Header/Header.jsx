@@ -1,4 +1,5 @@
 import NavbarAdmin from '../Navbar/NavbarAdmin';
+import NavbarProfessor from '../Navbar/NavbarProfessor';
 import { Link } from 'react-router-dom';
 import { logout } from '../../api/auth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,7 +7,6 @@ import { faHome } from '@fortawesome/free-solid-svg-icons';
 import './Header.scss';
 
 const NavbarUser = () => <div>USER</div>
-const NavbarProfessor = () => <div>PROFESSOR</div>
 
 const Header = (props) => {  //navBar
    

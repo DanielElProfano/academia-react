@@ -1,17 +1,16 @@
 import './CreateCourse.scss';
-import { FormGroup, InputGroup,InputGroupAddon, InputGroupText,Input, Label, Button } from 'reactstrap'
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
 import createProfessorService from '../../api/CourseService'
 
 
 
-const CreateCourse = () => {
+const CreateCourse = (props) => {
 
     const [nameState, setName] = useState('');
-    const [selectState, setSelect] = useState([]);
-    const [hasUser, setHasUser] = useState();
-
+    // const [hasUser, setHasUser] = useState();
+    const [isModalOpen , setModalOpen] = useState(true)
     const handleForm = (event) => {
         
         const {name, value} = event.target;
@@ -21,46 +20,42 @@ const CreateCourse = () => {
             console.log(nameState);
         }
     }
-    // const handleSelect = async (event) => {
-        
-    //     event.preventDefault();
-    //     const addSubject = {
-    //         subject = 
-    //     }
-    // }
-        
+         
     const submitForm = async (event) => {
         event.preventDefault();
         const newCourse = {
             name: nameState,
         }
         const data = await createProfessorService(newCourse);
-        setHasUser(true);
+        toggleModal();
      
+    }
+
+    const toggleModal = () => {
+        setModalOpen(false);
+        props.history.push('/course')
     }
     return(
         <>
-           <form className="b-createForm" onSubmit={submitForm}>
+         <Modal isOpen={isModalOpen}>
+            <ModalHeader className="b-modal__header">Create a course</ModalHeader>
+            <ModalBody>
+            <form className="b-createForm" onSubmit={submitForm}>
                 <label>Name: </label>
                     <input
                
                 name="name"
                 value={nameState}
-                onChange={handleForm}
-                />
-                <Button type="submit">Accept</Button>
-            </form>
-
-           {/* {hasUser && <form className="b-createForm__select" onSubmi={handleSelect}>
-                <select value={selectState} name="subjects" >
-                    <option value='React'>React</option>
-                    <option value='Node'>Node</option>
-                    <option value='Angular'>Angular</option>
-                    <option value='Vanilla JS'>Vanilla JS</option>
-                </select> 
-                <Button type="submit">Accept</Button>
-            </form>} */}
-            
+                onChange={handleForm}/>
+           
+                <ModalFooter>
+                <Button type="submit" color="primary">Accept</Button>
+                <Button color="secondary" onClick={toggleModal}>Cancel</Button>
+                </ModalFooter>
+                 </form>   
+   
+               </ModalBody>
+              </Modal>
         </>
     
     )

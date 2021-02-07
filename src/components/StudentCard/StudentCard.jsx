@@ -28,10 +28,11 @@ const StudentCard = (props) => {
                         { course.name }, </span>)}
               )}
             </td>
+            <td></td>
             <td className="b-table__content">{ rol }</td>
-            <td classname="b-table__icon b-table__icon--mod" onClick={modifyStudent}><FontAwesomeIcon icon={faTable} /></td>
-            <td classname="b-table__icon b-table__icon--del" onClick={deleteStudent}><FontAwesomeIcon icon={faTrash} /></td>
-            <td classname="b-table__icon b-table__icon--dtl" onClick={detailsStudent}><FontAwesomeIcon icon={faInfo}/></td>
+            <td className="b-table__icon b-table__icon--mod" onClick={modifyStudent}><FontAwesomeIcon icon={faTable} /></td>
+            <td className="b-table__icon b-table__icon--del" onClick={deleteStudent}><FontAwesomeIcon icon={faTrash} /></td>
+            <td className="b-table__icon b-table__icon--dtl" onClick={detailsStudent}><FontAwesomeIcon icon={faInfo}/></td>
         </>
 
     )

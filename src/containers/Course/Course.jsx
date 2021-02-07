@@ -25,21 +25,11 @@ const Course = () => {
     }
     const deleteCourse = async id => {
         await deleteProfessorService(id)
-        debugger
         courseList()
     }
-    
-
-    const toggleModal = () => {
-        setModalOpen(!isModalOpen);
-    }
-
-    const studentList = 'http://localhost:4000/student/show';
-    const handleStudentURL = 'http://localhost:4000/student/';
 
     return (
         <>
-        <CreateCourse/>
         <Table Striped className="b-table__container">
             <thead className="b-table__header">
                 <tr>

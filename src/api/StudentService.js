@@ -1,5 +1,6 @@
 const studentList = 'http://localhost:4000/student/show';
 const handleStudentURL = 'http://localhost:4000/student/';
+const newStudentURL= 'http://localhost:4000/student/create'
 
 
 export const allStudents = async() => {
@@ -99,4 +100,22 @@ export const getDetailsStudentService = async id => {
     return new Error(response.message);
   }
   return response;
+}
+export const createStudentService = async student => {
+  const request = await fetch(newStudentURL, {
+    method: "POST",
+    headers: {
+      "Accept": "*",
+      "Access-Control-Allow-Origin": "*",
+    },
+    credentials: 'include',
+    body: student
+})
+
+const response = await request.json();
+if(!request.ok) {
+  return new Error(response.message);
+}
+
+return response;
 }

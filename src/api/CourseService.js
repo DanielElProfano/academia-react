@@ -26,7 +26,6 @@ export const allCourses = async() => {
   }
 
 export const deleteProfessorService = async(id) => {
-    debugger
     const request = await fetch(`${handleCourseURL}${id}/delete`, {
       method: "GET",
       headers: {
@@ -47,7 +46,6 @@ export const deleteProfessorService = async(id) => {
   }
 
   const createCourseService = async (course) => {
-    
     const request = await fetch(createCourseURL, {
       method: "POST",
       headers: {
@@ -89,7 +87,6 @@ if(!request.ok) {
 return response;
 }
 export const addStudentService = async(idStudent, idCourse) => {
-  debugger
   const request = await fetch(`${addStudent}${idStudent}/${idCourse}`, {
     method: "POST",
     headers: {

@@ -1,7 +1,9 @@
-import { useState, Component } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './CreateProfessor.scss';
 import { createProfessorService } from '../../api/ProfessorService';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { allProfessors } from '../../api/ProfessorService'
 
 const RESET_FORM = {
@@ -20,8 +22,7 @@ const CreateProfessor = (props) => {
     
     const [newProfessor, setNewProfessor] = useState();
 
-    // const {name, lastName, age, mail} = props.createdProfessor;
-  
+    const [isModalOpen , setModalOpen] = useState(true)
     const [nameState, setNameState] = useState('')
     const [lastnameState, setLastnameState] = useState();
     const [ageState, setAgeState] = useState();
@@ -54,20 +55,10 @@ const CreateProfessor = (props) => {
                 reader.readAsDataURL(file)
 
                 console.log(file)
-        
-        // }else if(name === 'subjects'){
-            
-        //     let existSubject = subjectsState.find((element) => {
-        //         return element === value;
-        //     })
-        //     if(!existSubject){
-        //     setSubjects([...subjectsState, value]);
-        //     console.log(subjectsState)
-        // }
+       
         }else if(name === 'password'){
             setPassword(value)
         }
-        console.log(nameState, ageState, mailState, lastnameState, subjectsState, photoState, passwordState)
     }
     
     const submitForm = async(event) => {
@@ -81,26 +72,69 @@ const CreateProfessor = (props) => {
             form.append('subjects', subjectsState);
             form.append('password', passwordState);
 
-        // const newProfessor = { 
-        //     name : nameState,
-        //     lastName : lastnameState,
-        //     age : ageState,
-        //     mail : mailState,
-        //     subjects : subjectsState,
-        //     photo: photoState,
-        //     password: passwordState
-        // }
-        
- 
         const data = await createProfessorService(form);
-        debugger
+        toggleModal();
         props.history.push('/professor')
-        
+    }
+    const toggleModal = () => {
+        setModalOpen(false);
+        props.history.push('/student')
     }
     
     return(
-        
-        <div className="">
+        <Modal isOpen={isModalOpen}>
+        <ModalHeader className="b-modal__header">Create Student</ModalHeader>
+        <ModalBody>
+        <form className="b-form" onSubmit={submitForm} method="POST" enctype="multipart/form-data">
+            <fieldset className="b-form__field">
+                <legend>Datos personales</legend>
+                {photoPreview && <img className="b-form__"src={photoPreview}></img>}
+                <label for="photo">Photo:</label>
+                <input type="file" 
+                    name="photo"
+                    onChange={handleProfessorForm}  
+                    accept="image/png, image/jpg, image/jpeg"/>
+            
+                <label for="name">Name: </label>
+                <input type="text" 
+                    name="name"
+                    onChange={handleProfessorForm} 
+                    value={nameState}></input>
+            
+                <label for="lastName">Lastname: </label>
+                <input name="lastName" 
+                        type="text" 
+                        onChange={handleProfessorForm}
+                        value={lastnameState}></input>
+            
+                <label for="mail">Email: </label>
+                <input name="mail" 
+                    type="text"
+                    onChange={handleProfessorForm}
+                    value={mailState}></input>
+                
+                <label for="age">Age: </label>
+                <input name="age" 
+                    type="number"
+                    onChange={handleProfessorForm}  
+                    value={ageState}></input>
+
+                <label for="password">Password</label>
+                <input type="password"
+                        name="password"
+                        onChange={handleProfessorForm}
+                        value={passwordState}></input>
+                        
+            </fieldset>
+            <ModalFooter>
+            <Button type="submit" color="primary">Accept</Button>
+            <Button color="secondary" onClick={toggleModal}>Cancel</Button>
+            </ModalFooter>
+             </form>   
+
+           </ModalBody>
+          </Modal>)
+        {/* <div className="">
         {photoPreview && <img src={photoPreview}></img>}
         <form onSubmit={submitForm} method="POST" enctype="multipart/form-data">
             <fieldset>
@@ -146,8 +180,8 @@ const CreateProfessor = (props) => {
             <Link to="/professor">Cancel</Link>
         </form>
 
-    </div>
-    )
+    </div> */}
+    
 }
 
 

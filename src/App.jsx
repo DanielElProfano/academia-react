@@ -12,6 +12,9 @@ import CreateProfessor from './containers/CreateProfessor';
 import CreateCourse from './containers/CreateCourse';
 import AddProfToCourse from './components/AddProfToCourse';
 import AddStdToCourse from './containers/AddStdToCourse';
+import CreateStudend from './containers/CreateStudent';
+import ProfessorStudents from './components/ProfessorStudents';
+
 import './App.css';
 
 
@@ -67,12 +70,17 @@ const App = () =>{
             <Route path="/login" component={
               (props) => <LoginForm {...props} logUser={login}/>
             }/>}
+             
             <Route path="/course/add" exact component={AddProfToCourse}/>
             <Route path="/course/create" exact component={CreateCourse}/>
             <Route path="/professor/create" extact component={CreateProfessor}/>
             <Route path="/professor" exact component={Professor}/>
             <Route path="/student" exact component={Student}/>
+            <Route path="/student/create" exact component={CreateStudend}/>
             <Route path="/student/add" exact component={AddStdToCourse}/>
+            <Route path="/professor/student" exact component={
+              (props) => <ProfessorStudents {...props} logUser={logUser}/>
+            }/>
             
             <Route path="/course" exact component={Course}/>
             

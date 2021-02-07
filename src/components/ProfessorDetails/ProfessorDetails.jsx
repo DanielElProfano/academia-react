@@ -16,6 +16,7 @@ const ProfessorDetails = (props) => {
      
     });
     return(
+      
         <div className="b-details">
             <div className="b-details__header">
                 <h1>Details of: {name}</h1>

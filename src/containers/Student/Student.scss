@@ -1,0 +1,37 @@
+.b-table{
+    display: flex;
+    justify-content: center;
+    margin-top:4rem;
+ 
+    &__headcontainer{
+        background-color: #9bccab;
+    }
+    &__container{
+        box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.295);
+        margin: 1rem 2rem;
+    }
+    &__row{
+        border-bottom: 1px solid lightgray;
+        
+
+    }
+    &__header{
+        
+        color: white;
+        padding: 1rem;
+        font-size: 1.1rem;
+        min-width: 150px;
+        text-align: center;
+
+        // &--mod{
+        //     background-color: lightyellow;
+        // }
+        // &--del{
+        //     background-color: lightcoral;
+        // }
+        // &--shw{
+        //     background-color: lightpink;
+        // }
+    }
+    
+}
