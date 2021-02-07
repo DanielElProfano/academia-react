@@ -1,11 +1,10 @@
 // @import '../../../public/styles/b-variables.scss';
 
 .b-loginform{
-    margin-top: 3rem;
-    display: flex;
     
+    margin-top: 9rem;
+    display: flex;
     justify-content: center;
-
     &__form{
         display:flex;
         flex-direction: column;
@@ -16,7 +15,27 @@
         border-radius: 8px;
         padding: 1rem;
         width: 200px;
+        
     }
+
+    &__container{
+        border: 1px solid black;
+        overflow: hidden;
+        display: flex;
+        width:300px;
+        height: 400px;
+        &__img{
+            background-color: lightcoral;
+            width: 100px;
+            height: inherit;
+        }
+    }
+    &__img{
+        background-color: lightblue;
+        object-position: center center;
+        object-fit: cover;
+    }
+
     &__title{
         background-color: rgb(186, 240, 186);
         padding: 0.5rem;

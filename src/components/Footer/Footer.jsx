@@ -2,9 +2,11 @@ import './Footer.scss';
 
 const Footer = () => {
     return(
-        <div>
-            Footer
-        </div>
+        <footer class="b-footer">
+            <div class="b-footer_container">
+                Footer
+            </div>
+        </footer>
     );
 }
 

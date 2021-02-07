@@ -35,7 +35,7 @@ const App = () =>{
     try{
       const data = await checkSession();
           delete data.password;
-          setLogUser(logUser);
+          setLogUser(data);
           setHasUser(true);
      
     }catch(error){

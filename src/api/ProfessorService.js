@@ -113,21 +113,19 @@ export const allProfessors = async() => {
   }
 
   export const createProfessorService = async professor => {
-    
+    debugger
     const request = await fetch(newProfessorURL, {
       method: "POST",
       headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
+        "Accept": "*",
         "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Credentials": true,
       },
       credentials: 'include',
-      body: JSON.stringify(professor),
+      body: professor
   })
 
   const response = await request.json();
-  
+  debugger
   if(!request.ok) {
     return new Error(response.message);
   }

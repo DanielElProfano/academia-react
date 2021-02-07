@@ -2,6 +2,7 @@ import { useState, Component } from 'react';
 import { Link } from 'react-router-dom';
 import './CreateProfessor.scss';
 import { createProfessorService } from '../../api/ProfessorService';
+import { allProfessors } from '../../api/ProfessorService'
 
 const RESET_FORM = {
     name:'',
@@ -14,7 +15,7 @@ const RESET_FORM = {
     password: ''
 }
 
-const CreateProfessor = () => {
+const CreateProfessor = (props) => {
 
     
     const [newProfessor, setNewProfessor] = useState();
@@ -72,9 +73,7 @@ const CreateProfessor = () => {
     const submitForm = async(event) => {
         event.preventDefault();
         const form = new FormData();
-        form.append('photo', photoState)     
-       
-      
+            form.append('photo', photoState)     
             form.append('name', nameState);
             form.append('lastName', lastnameState);
             form.append('age', ageState);
@@ -93,8 +92,9 @@ const CreateProfessor = () => {
         // }
         
  
-        const data = await createProfessorService(form)
-        console.log(data)
+        const data = await createProfessorService(form);
+        debugger
+        props.history.push('/professor')
         
     }
     

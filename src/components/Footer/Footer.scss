@@ -1,0 +1,13 @@
+.b-footer{
+    color: white;
+    background-color: #505050;
+    width: 100%;
+    height: 81px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    box-shadow: -1px -5px 10px black;
+    &__container{
+        padding:12px;
+    }
+}

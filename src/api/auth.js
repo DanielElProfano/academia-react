@@ -16,6 +16,8 @@ export const login = async userData => {
   })
  
   const response = await request.json();
+  debugger
+  delete response.password;
   if(!request.ok) {
     return new Error(response.message);
   }

@@ -1,0 +1,27 @@
+.b-table{
+    &__content{
+       max-width: 800px;
+        word-wrap: normal;
+    }
+       
+    
+    &__img{
+        width: 100px;
+        object-fit: cover;
+    }
+    &__icon{
+        font-size: 1.2rem;
+        padding: 1rem;
+        cursor:pointer;
+
+        &--mod{
+            color: rgb(245, 165, 111);
+        }
+        &--del{
+            color: rgb(214, 134, 134);
+        }
+        &--dtl{
+            color:rgb(88, 138, 88);
+        }
+    }
+}

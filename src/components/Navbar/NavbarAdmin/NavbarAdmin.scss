@@ -4,20 +4,30 @@
     background: burlywood;
     color: #f0f0f0;
   
-    
+      &__icon{
+        font-size: 2rem;
+        margin-right: 8px;
+        
+      }
      &__menu {
-       color: white;
+       
        line-height: 45px;
        font-weight: 700;
        text-transform: uppercase;
        margin: 0px 1rem;
        padding: 0px;
        &-item {
+         cursor:pointer;
          display: inline-block;
          position: relative;
+         color: white;
+         padding: 1rem;
+         border-radius: 8px;
+         transition: all 0.3s ease-in-out;
          
          &:hover {
-           background-color:rgb(255, 200, 200);
+           background-color:#464646;
+           color: rgb(253, 203, 162);
            
            .b-nav__submenu {
              display: block;
@@ -25,26 +35,31 @@
            }
          }
        }
-       
      }
-    
     
     &__submenu {
       list-style: none;
+      padding: 0px;
       font-weight: 300;
       text-transform: none;
-      // z-index: -1;
-      // left:0px;
-      // top:-100px;
       display: none;
       position: absolute;
+      left: 0px;
+      top: 75px;
       width: 220px;
-      background-color: rgb(255, 192, 192);
-      transition: all 300ms ease-in-out;
+      background-color: #464646;
+      transition: all 0.3s ease-in-out;
       
       &-item {
+        border-bottom: 1px solid lightgray;
+        color: white;
+        font-size: 1.2rem;
+        padding-left: 1rem;
+        text-decoration: none;
+        transition: all 0.3s ease-in-out;
         &:hover {
-          background: blue;
+          background: rgb(116, 116, 116);
+          text-decoration: none;
         }
       }
     }

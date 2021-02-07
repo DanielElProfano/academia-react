@@ -8,6 +8,8 @@ import { allStudents,
 import StudentCard from './../../components/StudentCard';
 import ModifyStudentForm from '../../components/ModifyStudentForm';
 import ProfessorDetails from '../../components/StudentDetail';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './Student.scss';
 
@@ -15,6 +17,8 @@ const Student = (props) => {
     const [listOfStudents, setListOfStudent] = useState();
     const [student, setStudent] = useState();
     const [detailsStudentView, setDetailsStudentView] = useState();
+    const [modifyModal, setModifyModal] = useState();
+    const [isModalOpen , setModalOpen] = useState(false)
 
     useEffect(() => { //cargar la lista de profesores
         studentList();
@@ -36,27 +40,33 @@ const Student = (props) => {
     const modifyStudent = async id => {
        
         const data = await getModifyStudentService(id);
+        setModalOpen(!isModalOpen);
         setStudent(data);
+        setModifyModal(true)
     }
 
     const modifiedStudent= async (user) => {
         const data = await postModifyStudentService(user)
         setStudent(undefined);
+        setModalOpen(!isModalOpen);
         studentList();
     }
 
     const detailsStudent = async (id) => {
         const data = await getDetailsStudentService(id);
-        debugger
-        console.log('data: ' + JSON.stringify(data))
         setDetailsStudentView(data);
+        setModalOpen(!isModalOpen);
 
     }
 
+    const toggleModal = () => {
+        setModalOpen(!isModalOpen);
+    }
+
     return(
-        <>
+        <div className="b-table">
             <table className="b-table__container">
-                <thead className="b-table__header">
+                <thead className="b-table__headcontainer">
                     <tr>
                         <th className="b-table__header">Image</th>
                         <th className="b-table__header">Name</th>
@@ -66,9 +76,9 @@ const Student = (props) => {
                         <th className="b-table__header">Course</th>
                         <th className="b-table__header">Faltas</th>
                         <th className="b-table__header">Rol</th>
-                        <th className="b-table__header--mod">Modify</th>
-                        <th className="b-table__header--del">Delete</th>
-                        <th className="b-table__header--shw">Details</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody className="b-table__list">
@@ -87,18 +97,41 @@ const Student = (props) => {
                     
                 </tbody>
             </table>
-            {student && <div>
+            {/* {student && <div>
                 <ModifyStudentForm 
                     student={student}
                     modifiedStudent={modifiedStudent}                        
                     />
             </div>}
             {detailsStudentView && <div>
-                <ProfessorDetails
+                <studentDetails
                     detailsStudentView={detailsStudentView}/>
                     
+            </div>} */}
+            <Modal isOpen={isModalOpen}>
+              <ModalHeader>{modifyModal ? <span>Mofify</span>:<span>Deatils</span>} </ModalHeader>
+               <ModalBody>
+               {detailsStudentView && <div>
+                        <ProfessorDetails
+                            detailsStudentView={detailsStudentView}/>
+                    
+                    </div>}
+                {modifyModal && <div>
+                <ModifyStudentForm
+                    student={student}
+                    modifiedStudent={modifiedStudent} //esta prop recibe el professor modificado
+                />
             </div>}
-        </>
+               </ModalBody>
+                   
+               <ModalFooter>
+                <Button color="primary" onClick={toggleModal}>Accept</Button>
+                {!detailsStudentView && 
+                    <Button color="secundary" onClick={toggleModal}>Cancel</Button>}
+                
+              </ModalFooter>
+              </Modal>
+        </div>
     )
 }
 export default Student;

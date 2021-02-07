@@ -2,23 +2,8 @@ import './StudentDetail.scss';
 
 const StudentDetail = (props) => {
     const { name, lastName, mail, age, photo, rol, courses} = props.detailsStudentView;
-    console.log("cursos: "+ courses)
-  
-    let options = [...courses];
-    // let options = courses.splice(courses.length-1,1);
-    console.log("cursos: object:  "+ options)
-    options.forEach((element, index) => {
-    
-        options.push(
-            <option 
-                key={index} 
-                value={element._id}
-                >
-                {element.name}
-            </option>
-        );
-    debugger
-    });
+     
+   
     return(
         <div className="b-details">
             <div className="b-details__header">
@@ -41,9 +26,9 @@ const StudentDetail = (props) => {
                     <span className="b-text__description">Lastname: </span><span className="b-text__data">{lastName}</span>
                     <span className="b-text__description">Email: </span><span className="b-text__data">{mail}</span>
                     <span className="b-text__description">Birth of date: </span><span className="b-text__data">{age}</span>
-                    <select> {options }</select>
-                </div>
-            </div>
+                    
+              </div>
+          </div>
         </div>
     )
 

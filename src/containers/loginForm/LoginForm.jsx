@@ -41,37 +41,43 @@ class LoginForm extends Component {
     return (
       
       <div className="b-loginform">
-      {!this.state.hasUser &&
-        <form className="b-loginform__form" onSubmit={this.handleSubmitForm}>
-          <h1 className="b-loginform__title">Login</h1>
-          <label htmlFor="mail">
-            <p>Email</p>
-            <input
-              type="text"
-              name="mail"
-              value={this.state.mail}
-              onChange={this.handleChangeInput}
-            />
-          </label>
+          {!this.state.hasUser &&
+            <div className="b-loginform__container">
+              <div className="b-loginform__container__img">
 
-          <label htmlFor="password">
-            <p>Contraseña</p>
-            <input
-              type="password"
-              name="password"
-              value={this.state.password}
-              onChange={this.handleChangeInput}
-            />
-          </label>
+                <img className="b-loginform__img" src="/images/happyTeacher2.jpg" alt=""/>
+              </div>
+              <form className="b-loginform__form" onSubmit={this.handleSubmitForm}>
+                <h1 className="b-loginform__title">Login</h1>
+                <label htmlFor="mail">
+                  <p>Email</p>
+                  <input
+                    type="text"
+                    name="mail"
+                    value={this.state.mail}
+                    onChange={this.handleChangeInput}
+                  />
+                </label>
 
-          {this.state.error && <p style={{ color: 'red' }}>
-            Ha ocurrido un error: {this.state.error}
-          </p>}
+                <label htmlFor="password">
+                  <p>Contraseña</p>
+                  <input
+                    type="password"
+                    name="password"
+                    value={this.state.password}
+                    onChange={this.handleChangeInput}
+                  />
+                </label>
 
-          <div style={{ marginTop: '20px' }}>
-              <button className="b-loginform__button" type="submit">Login</button>
-          </div>
-        </form>}
+                {this.state.error && <p style={{ color: 'red' }}>
+                  Ha ocurrido un error: {this.state.error}
+                </p>}
+
+                <div style={{ marginTop: '20px' }}>
+                    <button className="b-loginform__button" type="submit">Login</button>
+                </div>
+              </form>
+            </div>}
       </div>
     );
   }

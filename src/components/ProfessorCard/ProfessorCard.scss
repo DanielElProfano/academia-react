@@ -2,6 +2,8 @@
     &__content{
        max-width: 800px;
         word-wrap: normal;
+        font-size: 1.1rem;
+        text-align: center;
     }
        
     
@@ -15,14 +17,14 @@
         cursor:pointer;
 
         &--mod{
-            color: blue;
+            color: rgb(245, 165, 111);
         }
         &--del{
-            color: red;
+            color: rgb(214, 134, 134);
 
         }
         &--dtl{
-            color:green;
+            color:rgb(88, 138, 88);
         }
     }
 }

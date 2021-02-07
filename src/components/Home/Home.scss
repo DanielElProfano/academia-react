@@ -1,4 +1,50 @@
 .b-home{
+    width:100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    background-image:  linear-gradient(
+        rgba(0, 0, 0, 0.6),
+        rgba(0, 0, 0, 0.2)
+      ),url('../../images/happyTeacher2.jpg');
+    z-index: -1;
+    &__c1{
+        margin-top: 14rem;
+        margin-left: 7rem;
+        width: 800px;
+        height: 400px;
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.6),
+            rgba(0, 0, 0, 0.2)),
+            url('../../images/happyTeacher3.jpg');
+        background-position: top;
+        background-size: cover;
+        box-shadow: 1px 1px 30px rgba(0, 0, 0, 0.452);
+        border-radius: 8px;
+    }
 
     
+}
+.b-logo{
+    font-size: 4rem ;
+    margin-top: 4rem;
+    color: white;
+
+    // background-color: lightgreen;
+    &__A{
+        color: red;
+        font-weight: 700;
+
+    }
+    &__H{
+        color:orange;
+        text-align: right;
+        font-weight: 700;
+        margin-left: 10rem;
+    }
+    &__S{
+        color: rgb(91, 107, 245);
+        font-weight: 700;
+        margin-left: 4rem;
+    }
 }

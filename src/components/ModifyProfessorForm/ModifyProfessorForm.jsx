@@ -1,14 +1,8 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Button, Col, Form, Row} from 'reactstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './ModifyProfessorForm.scss';
-
-const RESET_FORM = {
-    name:'',
-    lastName:'',
-    age: '',
-    mail:''
-}
 
 const ModifyProfessorForm = (props) => {
     const {name, lastName, age, mail} = props.professor;
@@ -43,9 +37,48 @@ const ModifyProfessorForm = (props) => {
         }
         props.modifiedProfessor(isModify)
     }
+
     return(
         <div className="">
-            <form onSubmit={submitForm} method="POST" enctype="multipart/form-data">
+             <Form onSubmit={submitForm} method="POST" enctype="multipart/form-data">
+            
+                <legend>Datos personales</legend>
+                <Row>
+                    <Col>
+                        <label for="name">Name: </label>
+                        <input type="text" 
+                            name="name"
+                            onChange={handleProfessorForm} value={nameState}></input>
+                    </Col>
+                    <Col>
+                        <label for="lastName">Lastname: </label>
+                        <input name="lastName" 
+                            type="text" 
+                            onChange={handleProfessorForm}
+                            value={lastnameState}></input>
+                    </Col>
+                </Row>
+                <Row>   
+                    <Col>   
+                        <label for="mail">Email: </label>
+                        <input name="mail" 
+                            type="text"
+                            onChange={handleProfessorForm}
+                            value={mailState}></input>
+                    </Col>
+                     <Col>      
+                        <label for="age">Agedfdfg: </label>
+                        <input name="age" 
+                            type="text"
+                            onChange={handleProfessorForm}  
+                            value={ageState}></input>
+                    </Col>
+                        
+                </Row>
+                <Button type="submit" color="primary" onCLick={handleProfessorForm} value="Modify">Accept</Button>
+              
+            </Form>
+            {/* <form onSubmit={submitForm} method="POST" enctype="multipart/form-data">
                 <fieldset>
                     <legend>Datos personales</legend>
                         <label for="name">Name: </label>
@@ -72,13 +105,11 @@ const ModifyProfessorForm = (props) => {
                                 value={ageState}></input>
                         
                 </fieldset>
-                <input type="submit" onCLick={handleProfessorForm} value="Modify"></input>
-                {/* < href="/professor/show">Cancel</Link> */}
-            </form>
-
+                <Button type="submit" color="primary" onCLick={handleProfessorForm} value="Modify">Accept</Button>
+              
+            </form> */}
         </div>
     )
-    
 }
 
 export default ModifyProfessorForm;

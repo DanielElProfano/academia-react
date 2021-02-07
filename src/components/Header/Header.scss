@@ -1,9 +1,10 @@
 .b-header{
     height: 80px;
-    background-color: lightskyblue;;
+    background-color: #f1ab71;
     width: 100%;
     display: flex;
     align-items: center;
+    box-shadow: 1px 5px 10px rgba(73, 27, 0, 0.63);
 
     &__left{
         flex: 1;
@@ -12,11 +13,29 @@
     &__nav{
         display: flex;
         list-style: none;
+        margin: 0;
     }
     &__right{
         flex:2;
         display: flex;
         justify-content: flex-end;
     }
-   
+    &__menu{
+
+        &--logout{
+            background-color: white;
+            padding:1rem;
+            color: darkred;
+            font-weight: 600;
+            border-radius: 4px;
+            margin-right: 1rem;
+            margin-left: 3rem;
+            box-shadow: 1px 1px 5px black;
+            
+            transition: all 0.3s ease-in-out;
+            &:hover{
+                color: chocolate;
+            }
+        }
+    }
 }
