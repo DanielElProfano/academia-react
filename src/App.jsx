@@ -16,8 +16,6 @@ import CreateStudend from './containers/CreateStudent';
 import ProfessorStudents from './components/ProfessorStudents';
 
 import './App.css';
-
-
 export const UserContext = React.createContext({
 
 });
@@ -65,6 +63,7 @@ const App = () =>{
             hasUser={hasUser}
             logoutUser={logoutUser}
             />
+          <div className="app-content">
           <Switch>
             {!hasUser &&
             <Route path="/login" component={
@@ -86,7 +85,7 @@ const App = () =>{
             
             <Route path='/' exact component={Home} />
           </Switch>
-                    
+          </div>
           <Footer />
         </Router>
       </UserContext.Provider>

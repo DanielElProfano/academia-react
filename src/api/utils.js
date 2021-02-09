@@ -14,7 +14,6 @@ export const sendingEmail = async (email) => {
     credentials: 'include',
     body: JSON.stringify(email),
     })
-    debugger
     const response = await request.json();
     if(!request.ok) {
       return new Error(response.message);

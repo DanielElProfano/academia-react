@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { allCourses } from '../../api/CourseService';
 import { allProfessors } from '../../api/ProfessorService';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Table} from 'reactstrap';
+import { Table } from 'reactstrap';
 import CourseCardAdd from '../CourseCardAdd';
 import {addProfessorService} from '../../api/CourseService'
 
@@ -13,6 +13,7 @@ const AddProfToCourse = (props) => {
     const [listOfProfessors, setListOfProfessors] = useState();
     const [checked, setChecked] = useState();
     const [idCourseState, setIdCourseState] = useState();
+    const [resetForm, setResetForm ] = useState(false);
     useEffect(() => {
         
         courseList();
@@ -35,38 +36,43 @@ const AddProfToCourse = (props) => {
     const onCheckProfessor = async (idProf) => {
         const data = await addProfessorService(idProf, idCourseState)
         setChecked(false)
-        document.getElementById("myForm").reset();
+        debugger
+        setResetForm(true)
         courseList();
-        
-
     }
 
     return (
         <>
-        <Table listOfProfessors={listOfProfessors } Striped className="b-table__container">
-            <thead className="b-table__header">
+        <div className="b-course__title">
+            <h2 className="b-course__title"> Select a professor and add to a course</h2>
+        </div>
+        <div className="b-tableadd__container">
+        <table listOfProfessors={listOfProfessors } Striped className="b-tableadd__main">
+            <thead className="b-tableadd__header">
                 <tr>
-                    <th className="b-table__header">Name</th>
-                    <th className="b-table__header">Professors</th>
+                    <th></th>
+                    <th className="b-tableadd__header">Name</th>
+                    <th className="b-tableadd__header">Professors</th>
                 </tr>
             </thead>
             <tbody>
                 {listOfCourses && listOfCourses.map(course => {
                     return (
-                        <tr key={course._id}><CourseCardAdd 
+                        <tr id="checkprofessorform" key={course._id}><CourseCardAdd 
                             course={course}
                             checked={isChecked}
-                           
+                            resetForm={resetForm}
                             />
                         </tr>
                     )})
                 } 
             </tbody>   
-        </Table>
-        {checked && <Table>
-            <thead className="b-table__header">
+        </table>
+        
+        {checked && <table>
+            <thead className="b-tableadd__header">
                 <tr>
-                    <th className="b-table__header">Name</th>
+                    <th className="b-tableadd__header">Name</th>
                 </tr>
             </thead>
             <tbody>
@@ -74,17 +80,14 @@ const AddProfToCourse = (props) => {
                     return (
                         <tr key={professor._id}>
                             <td><label for="check"></label>
-
                             <input type="checkbox" id="checkbox" onClick={() => onCheckProfessor(professor._id)}></input></td>
                             <td className="b-table__content">{ professor.name }</td>
-                           
-                            
                         </tr>
                     )})
                 } 
             </tbody>   
-
-        </Table>}
+        </table>}
+        </div>
         </>
     
     )

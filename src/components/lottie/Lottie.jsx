@@ -10,10 +10,10 @@ class LottieControl extends React.Component {
   }
  
   render() {
-    const buttonStyle = {
-      display: 'block',
-      margin: '10px auto'
-    };
+    // const buttonStyle = {
+    //   display: 'block',
+    //   margin: '10px auto'
+    // };
  
     const defaultOptions = {
       loop: false,
@@ -21,9 +21,15 @@ class LottieControl extends React.Component {
       animationData: animationData,
       rendererSettings: {
         preserveAspectRatio: 'xMidYMid slice'
-      }
+      },
+      eventListeners:[
+        {
+          eventName: 'complete',
+          callback: () => console.log('the animation completed:'),
+        },
+      ]
     };
-    // this.anim = Lottie.loadAnimation(this.options);
+   
     
     return <div>
       <Lottie options={defaultOptions}
@@ -32,9 +38,9 @@ class LottieControl extends React.Component {
             
               isStopped={this.state.isStopped}
               isPaused={this.state.isPaused}/>
-      <button style={buttonStyle} onClick={() => this.setState({isStopped: true})}>stop</button>
+      {/* <button style={buttonStyle} onClick={() => this.setState({isStopped: true})}>stop</button>
       <button style={buttonStyle} onClick={() => this.setState({isStopped: false})}>play</button>
-      <button style={buttonStyle} onClick={() => this.setState({isPaused: !this.state.isPaused})}>pause</button>
+      <button style={buttonStyle} onClick={() => this.setState({isPaused: !this.state.isPaused})}>pause</button> */}
     </div>
   }
 }

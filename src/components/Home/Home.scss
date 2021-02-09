@@ -4,23 +4,23 @@
     display: flex;
     justify-content: center;
     background-image:  linear-gradient(
-        rgba(0, 0, 0, 0.4),
-        rgba(0, 0, 0, 0.2)
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0.0)
       ),url('../../images/happyTeacher2.jpg');
     z-index: -1;
     
     &__c1{
-        margin-top: 20rem;
+        margin-top: 24rem;
         margin-left: 7rem;
         width: 800px;
         height: 400px;
         background-image: linear-gradient(
             rgba(0, 0, 0, 0.1),
-            rgba(0, 0, 0, 0.1)),
+            rgba(0, 0, 0, 0.0)),
             url('../../images/happyTeacher3.jpg');
         background-position: top;
         background-size: cover;
-        transform: scaleX(-1);
+       
         box-shadow: 1px 1px 30px rgba(0, 0, 0, 0.452);
         border-radius: 8px;
     }

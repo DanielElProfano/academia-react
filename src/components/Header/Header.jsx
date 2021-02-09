@@ -18,7 +18,7 @@ const Header = (props) => {  //navBar
     return(
         <div className="b-header">
             <div className="b-header__left">
-                <span><img src=''/>ASH ACADEMY</span>
+                <span><img src='' alt=""/>ASH ACADEMY</span>
                 <Link to='/'>
                     <span className="b-nav__menu b-nav__menu-item"><FontAwesomeIcon className="b-nav__icon" icon={faHome}/>HOME</span>
                 </Link>

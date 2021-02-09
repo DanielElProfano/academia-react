@@ -1,0 +1,29 @@
+.b-tableadd{
+    &__container{
+        display: flex;
+        justify-content: center;;
+        margin:auto;
+      
+    }
+    &__main{
+        margin:4rem;
+        max-width: 200px;
+        background-color: white;
+    }
+    &__header{
+        text-align: center;
+        min-width: 300px;
+        padding: 1rem;
+        background-color: #9bccab;;
+        color:white;
+    }
+    &__row{
+        padding: 1rem;
+        border-bottom: 1px solid lightgrey;
+        text-align: center;
+    }
+}
+.b-course__title{
+    margin-top: 4rem;
+    text-align: center;
+}

@@ -1,4 +1,9 @@
-.b-form{
+.b-tablestudent{
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+
+.b-table__container{
+    width: 80%;
 }

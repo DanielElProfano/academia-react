@@ -71,7 +71,7 @@ const CreateStudend = (props) => {
             <form className="b-form" onSubmit={submitForm} method="POST" enctype="multipart/form-data">
                 <fieldset className="b-form__field">
                     <legend>Datos personales</legend>
-                    {photoPreview && <img className="b-form__"src={photoPreview}></img>}
+                    {photoPreview && <img className="b-form__"src={photoPreview} alt="student"></img>}
                     <label for="photo">Photo:</label>
                     <input type="file" 
                         name="photo"

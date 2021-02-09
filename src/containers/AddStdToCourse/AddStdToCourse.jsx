@@ -10,8 +10,6 @@ const AddStdToCourse = () => {
 
         const [listOfStudents, setListOfStudent] = useState();
         const [listOfCourses, setListOfCourses] = useState();
-        // const [student, setStudent] = useState();
-        // const [detailsStudentView, setDetailsStudentView] = useState();
         const [idStudentState, setIdStudent] = useState();
         const [checked, setChecked] = useState();
     
@@ -85,13 +83,10 @@ const AddStdToCourse = () => {
                                     <input type="checkbox" id="checkbox" onClick={() => onCheckCourse(course._id)}></input>
                                 </td>
                                 <td className="b-table__content">{ course.name }</td>
-                            
-                                
                             </tr>
                         )})
                     } 
                 </tbody>   
-
             </table>}
             </div>
         </>

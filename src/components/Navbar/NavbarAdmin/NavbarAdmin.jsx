@@ -1,12 +1,9 @@
 import './NavbarAdmin.scss';
 import { Link } from 'react-router-dom';
-import { useContext } from 'react';
-import { UserContext } from '../../../App.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGraduationCap, faUserGraduate, faBookOpen} from '@fortawesome/free-solid-svg-icons';
 const NavbarAdmin = (props) => {
 
-    const hasUser = useContext(UserContext); //ha useContext le pasamos el contexto creado en App
     return(
         <>
             <nav className="b-header__right">

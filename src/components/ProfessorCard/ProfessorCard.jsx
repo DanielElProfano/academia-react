@@ -3,7 +3,7 @@ import { faTrash, faInfo, faTable} from '@fortawesome/free-solid-svg-icons';
 import './ProfessorCard.scss'
 
 const ProfessorCard = (props) => {
-    const { _id, age, education, lastName, mail, name, photo, rol, courses} = props.professor;
+    const { _id, age, lastName, mail, name, photo, rol, courses} = props.professor;
 
     const deleteProfessor = () =>{
         props.deleteProfessor(_id);

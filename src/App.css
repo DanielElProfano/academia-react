@@ -7,12 +7,13 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.app-content{
+  min-height: calc(100vh - 160px);
+  background-image:  linear-gradient(
+    rgba(255, 255, 255, 0.973),
+    rgba(202, 202, 202, 0.582)
+  ),url('./images/happyTeacher3.jpg');
 }
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

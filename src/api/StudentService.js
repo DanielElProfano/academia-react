@@ -18,14 +18,12 @@ export const allStudents = async() => {
     })
     
     const response = await request.json();
-    console.log(response)
     if(!request.ok) {
       return new Error(response.message);
     }
     return response;
   }
   export const deleteStudentService = async(id) => {
-    debugger
     const request = await fetch(`${handleStudentURL}${id}/delete`, {
       method: "GET",
       headers: {
@@ -35,9 +33,7 @@ export const allStudents = async() => {
         "Access-Control-Allow-Credentials": true,
       },
       credentials: 'include',
-      
     })
-    
     const response = await request.json();
     if(!request.ok) {
       return new Error(response.message);
@@ -116,6 +112,24 @@ const response = await request.json();
 if(!request.ok) {
   return new Error(response.message);
 }
-
 return response;
+}
+
+export const getFaltaStudentService = async id => {
+  const request = await fetch(`${handleStudentURL}${id}/falta`,  { 
+  method: "GET",
+  headers: {
+    "Accept": "application/json",
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Credentials": true,
+  },
+  credentials: 'include',
+  body: JSON.stringify(),
+  })
+  const response = await request.json();
+  if(!request.ok) {
+    return new Error(response.message);
+  }
+  return response;
 }

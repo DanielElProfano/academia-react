@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Button} from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import './ModifyProfessorForm.scss';
 
 const ModifyProfessorForm = (props) => {
-    const {name, lastName, age, mail} = props.professor;
+  
+    const {name, lastName, age, mail, photo} = props.professor;
   
     const [nameState, setNameState] = useState(name)
     const [lastnameState, setLastnameState] = useState(lastName);
@@ -40,7 +40,8 @@ const ModifyProfessorForm = (props) => {
 
     return(
         <div className="">
-             <form className="b-form__field" onSubmit={submitForm} method="POST" enctype="multipart/form-data">
+            <img className="b-detail__img"src={photo} alt={name}></img>
+            <form className="b-form__field" onSubmit={submitForm} method="POST" enctype="multipart/form-data">
             
                 <legend>Datos perersonales</legend>
         
@@ -61,7 +62,7 @@ const ModifyProfessorForm = (props) => {
                     onChange={handleProfessorForm}
                     value={mailState}></input>
                     
-                <label for="age">Agedfdfg: </label>
+                <label for="age">Age: </label>
                 <input name="age" 
                     type="text"
                     onChange={handleProfessorForm}  

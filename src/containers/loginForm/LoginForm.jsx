@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Timeline, Tween } from 'react-gsap';
 import { login } from '../../api/auth';
 
 import './LoginForm.scss';
@@ -39,13 +40,14 @@ class LoginForm extends Component {
 
   render() {
     return (
-      
+    <div className="b-loginform__background">
+    <Timeline target = {
       <div className="b-loginform">
           {!this.state.hasUser &&
             <div className="b-loginform__container">
               <div className="b-loginform__container__img">
 
-                <img className="b-loginform__img" src="/images/happyTeacher2.jpg" alt=""/>
+                <img className="b-loginform__img" src="/images/papel.png" alt=""/>
               </div>
               <form className="b-loginform__form" onSubmit={this.handleSubmitForm}>
                 <h1 className="b-loginform__title">Login</h1>
@@ -78,7 +80,11 @@ class LoginForm extends Component {
                 </div>
               </form>
             </div>}
-      </div>
+      </div>}>
+      <Tween  from={{ opacity: 0 }} 
+                    to={{ opacity:1}} duration={2}/>
+      </Timeline>
+    </div>
     );
   }
 }

@@ -38,22 +38,23 @@ const Student = (props) => {
         window.location.reload();
     }
     const modifyStudent = async id => {
-       
         const data = await getModifyStudentService(id);
-        setModalOpen(!isModalOpen);
         setStudent(data);
         setModifyModal(true)
+        setModalOpen(!isModalOpen);
     }
 
     const modifiedStudent= async (user) => {
         const data = await postModifyStudentService(user)
-        setStudent(undefined);
+        debugger
         setModalOpen(!isModalOpen);
         studentList();
+        setModifyModal(false)
     }
 
     const detailsStudent = async (id) => {
         const data = await getDetailsStudentService(id);
+        setModifyModal(false)
         setDetailsStudentView(data);
         setModalOpen(!isModalOpen);
 
@@ -104,7 +105,7 @@ const Student = (props) => {
             <Modal isOpen={isModalOpen}>
               <ModalHeader>{modifyModal ? <span>Mofify</span>:<span>Deatils</span>} </ModalHeader>
                <ModalBody>
-               {detailsStudentView && <div>
+               {!modifyModal && detailsStudentView && <div>
                         <ProfessorDetails
                             detailsStudentView={detailsStudentView}/>
                     
@@ -118,8 +119,8 @@ const Student = (props) => {
                </ModalBody>
                    
                <ModalFooter>
-                <Button color="primary" onClick={toggleModal}>Accept</Button>
-                {!detailsStudentView && 
+               {!modifyModal && <Button color="primary" onClick={toggleModal}>Accept</Button>}
+                {modifyModal && 
                     <Button color="secundary" onClick={toggleModal}>Cancel</Button>}
                 
               </ModalFooter>

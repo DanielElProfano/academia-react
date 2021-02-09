@@ -1,7 +1,10 @@
 import { useEffect } from 'react';
 import { useState } from 'react'
 import  './ProfessorStudents.scss';
-import { getCoursesProfessorService, getStudentsByCoursesProfessorService} from '../../api/ProfessorService'
+import { getCoursesProfessorService, 
+        getStudentsByCoursesProfessorService,
+        } from '../../api/ProfessorService'
+import { getFaltaStudentService } from '../../api/StudentService';
 import ProfessorStudentList from '../ProfessorStudentCard';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -15,11 +18,12 @@ const ProfessorStudents = (props) => {
     const [listOfStudents, setListOfStudents] = useState();
     const [isModalOpen , setModalOpen] = useState(false);
     const [mailState, setMailState] = useState();
-    const [fromState, setFrom ] = useState();
-    const [toState, setTo]= useState();
+    const [, setFrom ] = useState();
+    const [, setTo]= useState();
     const [subjectState, setSubject]= useState();
     const [studenState, setStudent] = useState({});
-    const [lottie, setLottie] =useState(false)
+    const [lottie, setLottie] =useState(false);
+    const [course, setCourse] = useState();
    
 
     useEffect(() => { //cargar la lista de profesores
@@ -46,6 +50,7 @@ const ProfessorStudents = (props) => {
     }
     const onSubmitForm = async (event) =>{
         event.preventDefault();
+        setCourse(select)
         const data = await getStudentsByCoursesProfessorService(select);
         setListOfStudents(data);
     }
@@ -76,6 +81,7 @@ const ProfessorStudents = (props) => {
     }       
 
     const submitEmailForm = async(event) => {
+        setLottie(false)
         setModalOpen(!isModalOpen);
         event.preventDefault();
         const newEmail = {
@@ -85,105 +91,104 @@ const ProfessorStudents = (props) => {
             text: mailState
         }
         const data = await sendingEmail(newEmail);
-        debugger
         setLottie(true);
     }
-   
+
+    const falta = async (idStd) => {
+        const data = await getFaltaStudentService(idStd);
+        const data2= await getStudentsByCoursesProfessorService(select);
+        setListOfStudents(data2);
+    }
     
     return (
-     
-        <div className="b-table">
-          <form onSubmit={onSubmitForm}>
-            <label>courses</label>
-            <select onChange={handleSelect} name="course">
-            {professor && professor.courses.map(course => {
-                
-                return(
-                    <option key={course._id} 
-                 
-                    value={course._id}>{course.name}</option>
+    <>
+        <div className="b-tablestudent">
+            <form onSubmit={onSubmitForm}>
+                <label>courses</label>
+                <select onChange={handleSelect} name="course">
+                {professor && professor.courses.map(course => {
+                    return(
+                        <option key={course._id} 
+                        value={course._id}>{course.name}</option>
+                    )}
                 )}
-            )}
-         </select>
-            <button type="submit">Select</button>
-         </form>
-         {lottie && <LottieControl></LottieControl>}
+                    </select>
+                <button type="submit">Select</button>
+            </form>
+         
+        
          { listOfStudents && 
-            
+
          <table className="b-table__container">
-                <thead className="b-table__headcontainer">
-                    <tr>
-                        <th className="b-table__header">Image</th>
-                        <th className="b-table__header">Name</th>
-                        <th className="b-table__header">Lastname</th>
-                        <th className="b-table__header">Mail</th>
-                        <th className="b-table__header">Age</th>
-                        <th className="b-table__header">Faltas</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody className="b-table__list">
-                        {listOfStudents.map(student => {
-                            return (
-                                <tr key={student._id}><ProfessorStudentList 
-                                    student={student}
-                                    sendEmail={sendEmail}
-                                    // modifyStudent={modifyStudent}
-                                    // detailsStudent={detailsStudent}
-                                            />
-                                        </tr>
-                            )})
-                        }    
-                    
-                </tbody>
-            </table>}
-            <Modal isOpen={isModalOpen}  className="modal-dialog modal-lg">
-                <ModalHeader>send Email to: </ModalHeader>
-                <ModalBody>
-                <form className="b-form" onSubmit={submitEmailForm} method="POST" enctype="multipart/form-data">
-                    <label for="from">From: </label>
-                    <input type="text" 
-                        name="name"
-                        onChange={handleMailForm} 
-                        value={props.logUser.mail}></input>
-                
-                    <label for="to">To: </label>
-                    <input name="to" 
-                            type="text" 
-                            onChange={handleMailForm}
-                            value={studenState.mail}></input>
-
-                    <label for="subject">Subject: </label>
-                    <input name="subject" 
-                            type="text" 
-                            onChange={handleMailForm}
-                            value={subjectState}></input>
-                
-                    <label for="text">Text: </label>
-                    <textarea name="mail" 
-                        type="text"
-                        cols="100"
-                        rows="10"
+            <thead className="b-table__headcontainer">
+                <tr>
+                    <th className="b-table__header">Image</th>
+                    <th className="b-table__header">Name</th>
+                    <th className="b-table__header">Lastname</th>
+                    <th className="b-table__header">Mail</th>
+                    <th className="b-table__header">Age</th>
+                    <th className="b-table__header">Faltas</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody className="b-table__list">
+                    {listOfStudents.map(student => {
+                        return (
+                            <tr key={student._id}><ProfessorStudentList 
+                                student={student}
+                                sendEmail={sendEmail}
+                                falta={falta}
+                                // detailsStudent={detailsStudent}
+                                />
+                            </tr>
+                        )})
+                    }    
+            </tbody>
+        </table>}
+        {lottie && <LottieControl></LottieControl>}
+        </div>
+        <Modal isOpen={isModalOpen}  className="modal-dialog modal-lg">  //modal para el email
+            <ModalHeader>send Email to: </ModalHeader>
+            <ModalBody>
+            <form className="b-form" onSubmit={submitEmailForm} method="POST" enctype="multipart/form-data">
+                <label for="from">From: </label>
+                <input type="text" 
+                    name="name"
+                    onChange={handleMailForm} 
+                    value={props.logUser.mail}></input>
+            
+                <label for="to">To: </label>
+                <input name="to" 
+                        type="text" 
                         onChange={handleMailForm}
-                        value={mailState}></textarea>
+                        value={studenState.mail}></input>
 
-<ModalFooter>
-<Button type="submit" color="primary">Accept</Button>
-             
-             <Button color="secundary" onClick={toggleModal}>Cancel</Button>
-                
-               </ModalFooter>
-                        
-                    
-                </form>
-               </ModalBody>
-                   
-             
-              </Modal>
+                <label for="subject">Subject: </label>
+                <input name="subject" 
+                        type="text" 
+                        onChange={handleMailForm}
+                        value={subjectState}></input>
+            
+                <label for="text">Text: </label>
+                <textarea name="mail" 
+                    type="text"
+                    cols="100"
+                    rows="10"
+                    onChange={handleMailForm}
+                    value={mailState}></textarea>
 
-         </div>
+                <ModalFooter>
+                    <Button type="submit" color="primary">Accept</Button>
+                    <Button color="secundary" onClick={toggleModal}>Cancel</Button>
+                </ModalFooter>
+            </form>
+            </ModalBody>
+        </Modal>
+
+    </>   
+        
     )
 }
 

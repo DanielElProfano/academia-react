@@ -1,13 +1,9 @@
 import './ProfessorStudentsCard.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInfo, faEnvelopeOpen, faSms, faTimesCircle} from '@fortawesome/free-solid-svg-icons';
+import { faEnvelopeOpen, faSms, faTimesCircle} from '@fortawesome/free-solid-svg-icons';
 
 const ProfessorStudentsCard = (props) => {
-    const { _id, age, lastName, mail, name, photo} = props.student;
-    // const studentMail = {
-    //     id : '',
-    //     mail : ''
-    // }
+    const { _id, age, lastName, mail, name, photo, faltas} = props.student;
     
     const sendEmail = () =>{
         const studentMail ={
@@ -29,6 +25,10 @@ const ProfessorStudentsCard = (props) => {
             <td className="b-table__content">{ lastName }</td>
             <td className="b-table__content">{ mail }</td>
             <td className="b-table__content">{ age }</td>
+            <td className="b-table__content">{ faltas.map(falta => {
+                return(
+                    <tr key={falta}>{falta}</tr>)}
+                )}</td>
             <td className="b-table__icon b-table__icon--mod" onClick={sendEmail}><FontAwesomeIcon icon={faEnvelopeOpen} /></td>
             <td className="b-table__icon b-table__icon--del" onClick={sms}><FontAwesomeIcon icon={faSms} /></td>
             <td className="b-table__icon b-table__icon--dtl" onClick={falta}><FontAwesomeIcon icon={faTimesCircle}/></td>

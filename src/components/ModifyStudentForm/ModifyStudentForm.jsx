@@ -1,13 +1,6 @@
 import { useState } from 'react';
 import './ModifyStudentForm.scss';
 
-const RESET_FORM = {
-    name:'',
-    lastName:'',
-    age: '',
-    mail:''
-}
-
 const ModifyStudentForm = (props) => {
     const {name, lastName, age, mail} = props.student;
   
@@ -28,8 +21,6 @@ const ModifyStudentForm = (props) => {
         }else if (name === 'lastName'){
             setLastnameState(value)
         }
-        console.log(nameState, ageState, mailState, lastnameState)
-
     }
     const submitForm = (event) => {
         event.preventDefault();
@@ -44,7 +35,7 @@ const ModifyStudentForm = (props) => {
     return(
         <div className="">
             <form onSubmit={submitForm} method="POST" enctype="multipart/form-data">
-                <fieldset>
+                <fieldset className="b-form__field">
                     <legend>Datos personales</legend>
                         <label for="name">Name: </label>
                         <input type="text" 
@@ -71,7 +62,6 @@ const ModifyStudentForm = (props) => {
                         
                 </fieldset>
                 <input type="submit" onCLick={handleStudentForm} value="Modify"></input>
-                {/* < href="/professor/show">Cancel</Link> */}
             </form>
 
         </div>
