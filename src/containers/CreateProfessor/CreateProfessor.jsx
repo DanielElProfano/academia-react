@@ -18,9 +18,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const CreateProfessor = (props) => {
 
-    
-    // const [newProfessor, setNewProfessor] = useState();
-
     const [isModalOpen , setModalOpen] = useState(true)
     const [nameState, setNameState] = useState('')
     const [lastnameState, setLastnameState] = useState();
@@ -64,7 +61,8 @@ const CreateProfessor = (props) => {
             form.append('age', ageState);
             form.append('mail', mailState);
             form.append('password', passwordState);
-
+        console.log(form)
+        debugger
         const data = await createProfessorService(form);
         toggleModal();
         props.history.push('/professor')

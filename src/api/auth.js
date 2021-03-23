@@ -2,6 +2,10 @@ const loginUrl = "http://localhost:4000/login";
 const checkSessionUrl = "http://localhost:4000/login/checkSession";
 const logoutUrl = "http://localhost:4000/login/logout";
 
+// const loginUrl = "https://academy-react.herokuapp.com/login";
+// const checkSessionUrl = "https://academy-react.herokuapp.com/login/checkSession";
+// const logoutUrl = "https://academy-react.herokuapp.com/login/logout";
+
 export const login = async userData => {
     const request = await fetch(loginUrl, {
     method: "POST",
@@ -17,7 +21,7 @@ export const login = async userData => {
   const response = await request.json();
   delete response.password;
   if(!request.ok) {
-    return new Error(response.message);
+    throw new Error(response.message);
   }
 
   return response;

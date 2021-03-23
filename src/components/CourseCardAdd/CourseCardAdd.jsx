@@ -15,21 +15,20 @@ const CourseCardAdd = (props) => {
 
     return(
         <>
-        <td>
-            <form id="myForm">
-                <label for="check"></label>
-                <input type="checkbox" onClick={onCheck}></input>
-            </form>
-        </td>
+            <td>
+                <form id="myForm">
+                    <label for="check"></label>
+                    <input type="checkbox" onClick={onCheck}></input>
+                </form>
+            </td>
             <td className="b-table__content">{ name }</td>
             <td className="b-table__content">
-            {professors.map(professor => {
+                {professors.map(professor => {
                 return ( 
-                        <span key={professor._id}>
-                        { professor.name }, </span>)}
-              )}
+                    <span key={professor._id}>
+                    { professor.name }, </span>)}
+                )}
             </td>
-    
         </>  
     )
 }

@@ -29,7 +29,6 @@ class LottieControl extends React.Component {
         },
       ]
     };
-   
     
     return <div>
       <Lottie options={defaultOptions}

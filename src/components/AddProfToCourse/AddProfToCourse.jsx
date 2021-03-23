@@ -69,9 +69,10 @@ const AddProfToCourse = (props) => {
             </tbody>   
         </table>
         
-        {checked && <table>
+        {checked && <table className="b-tableadd__main">
             <thead className="b-tableadd__header">
                 <tr>
+                    <th></th>
                     <th className="b-tableadd__header">Name</th>
                 </tr>
             </thead>

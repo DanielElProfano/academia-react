@@ -1,10 +1,10 @@
-import './AddStdToCourse.scss';
+import { useEffect, useState } from 'react';
 import { allStudents} from '../../api/StudentService';
 import { allCourses } from '../../api/CourseService';
 import { addStudentService } from '../../api/CourseService';
-import { useEffect, useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import AddStdToCourseCard from '../../components/AddStdToCourseCard'
+import './AddStdToCourse.scss';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const AddStdToCourse = () => {
 
@@ -34,7 +34,7 @@ const AddStdToCourse = () => {
             setChecked(true);
         } 
         const onCheckCourse = async (idCourse) => {
-            const data = await addStudentService(idStudentState, idCourse,)
+            await addStudentService(idStudentState, idCourse,)
             setChecked(false)
             document.getElementById("myForm").reset();
             studentList();
@@ -46,7 +46,7 @@ const AddStdToCourse = () => {
             <h2 className="b-course__title"> Select a Student to add to a course</h2>
         </div>
         <div className="b-tableadd__container">
-            <table listOfStudents={ listOfStudents } className="b-tableadd__main">
+            <table className="b-tableadd__main">
                 <thead className="b-tableadd__header">
                     <tr>
                         <th>Select course</th>

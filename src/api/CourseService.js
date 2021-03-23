@@ -3,7 +3,11 @@ const createCourseURL = 'http://localhost:4000/course/create';
 const handleCourseURL = 'http://localhost:4000/course/';
 const addProfessor = 'http://localhost:4000/course/addProfessor/';
 const addStudent= 'http://localhost:4000/course/addStudent/';
-
+// const coursesList = 'https://academy-react.herokuapp.com/course/show';
+// const createCourseURL = 'https://academy-react.herokuapp.com/course/create';
+// const handleCourseURL = 'https://academy-react.herokuapp.com/course/';
+// const addProfessor = 'https://academy-react.herokuapp.com/course/addProfessor/';
+// const addStudent= 'https://academy-react.herokuapp.com/course/addStudent/';
 export const allCourses = async() => {
     const request = await fetch(coursesList, {
       method: "GET",

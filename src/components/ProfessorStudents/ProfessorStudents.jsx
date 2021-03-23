@@ -11,6 +11,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { sendingEmail } from '../../api/utils';
 import LottieControl from '../lottie';
 
+const INITIAL_FORM = {
+    text : '',
+    to: '',
+    from: '',
+    subject: ''
+}
+
 const ProfessorStudents = (props) => {
 
     const [professor, setProfessor] = useState();
@@ -21,6 +28,8 @@ const ProfessorStudents = (props) => {
     const [, setFrom ] = useState();
     const [, setTo]= useState();
     const [subjectState, setSubject]= useState();
+
+    const [mailForm, setMailForm] = useState(INITIAL_FORM);
     const [studenState, setStudent] = useState({});
     const [lottie, setLottie] =useState(false);
     const [course, setCourse] = useState();
@@ -28,7 +37,6 @@ const ProfessorStudents = (props) => {
 
     useEffect(() => { //cargar la lista de profesores
         studentList();
-   // eslint-disable-next-line react-hooks/exhaustive-deps
    },[])
 
     const studentList = async() =>{
@@ -66,36 +74,19 @@ const ProfessorStudents = (props) => {
 
     const handleMailForm = (event) => {
         const { name, value } = event.target;
-       
-        if (name === 'mail'){
-            setMailState(value);
-        }else if (name === 'to'){
-            setTo(value);
-        }else if (name === 'from')
-        {
-            setFrom(value)
-        }else if (name === 'subject')
-        {
-            setSubject(value)
-        }
-    }       
+        setMailForm({...mailForm, [name]:value});
+    }   
 
     const submitEmailForm = async(event) => {
-        setLottie(false)
-        setModalOpen(!isModalOpen);
         event.preventDefault();
-        const newEmail = {
-            from : props.logUser.mail,
-            to: studenState.mail,
-            subject : subjectState,
-            text: mailState
-        }
-        const data = await sendingEmail(newEmail);
+        setLottie(false)
+        toggleModal();
+        await sendingEmail(mailForm);
         setLottie(true);
     }
 
     const falta = async (idStd) => {
-        const data = await getFaltaStudentService(idStd);
+        await getFaltaStudentService(idStd);
         const data2= await getStudentsByCoursesProfessorService(select);
         setListOfStudents(data2);
     }
@@ -106,20 +97,19 @@ const ProfessorStudents = (props) => {
             <form onSubmit={onSubmitForm}>
                 <label>courses</label>
                 <select onChange={handleSelect} name="course">
-                {professor && professor.courses.map(course => {
-                    return(
-                        <option key={course._id} 
-                        value={course._id}>{course.name}</option>
+                    {professor && professor.courses.map(course => {
+                        return(
+                            <option key={course._id}
+                            value={course._id}>{course.name}</option>
+                        )}
                     )}
-                )}
-                    </select>
+                </select>
                 <button type="submit">Select</button>
             </form>
-         
         
-         { listOfStudents && 
+        { listOfStudents && 
 
-         <table className="b-table__container">
+        <table className="b-table__container">
             <thead className="b-table__headcontainer">
                 <tr>
                     <th className="b-table__header">Image</th>
@@ -134,22 +124,21 @@ const ProfessorStudents = (props) => {
                 </tr>
             </thead>
             <tbody className="b-table__list">
-                    {listOfStudents.map(student => {
-                        return (
-                            <tr key={student._id}><ProfessorStudentList 
-                                student={student}
-                                sendEmail={sendEmail}
-                                falta={falta}
-                                // detailsStudent={detailsStudent}
-                                />
-                            </tr>
-                        )})
-                    }    
+                {listOfStudents.map(student => {
+                    return (
+                        <tr key={student._id}><ProfessorStudentList 
+                            student={student}
+                            sendEmail={sendEmail}
+                            falta={falta}
+                            />
+                        </tr>
+                    )})
+                }    
             </tbody>
         </table>}
         {lottie && <LottieControl></LottieControl>}
         </div>
-        <Modal isOpen={isModalOpen}  className="modal-dialog modal-lg">  //modal para el email
+        <Modal isOpen={isModalOpen}  className="modal-dialog modal-lg">  
             <ModalHeader>send Email to: </ModalHeader>
             <ModalBody>
             <form className="b-form" onSubmit={submitEmailForm} method="POST" enctype="multipart/form-data">
@@ -161,18 +150,18 @@ const ProfessorStudents = (props) => {
             
                 <label for="to">To: </label>
                 <input name="to" 
-                        type="text" 
-                        onChange={handleMailForm}
-                        value={studenState.mail}></input>
+                    type="text" 
+                    onChange={handleMailForm}
+                    value={studenState.mail}></input>
 
                 <label for="subject">Subject: </label>
                 <input name="subject" 
-                        type="text" 
-                        onChange={handleMailForm}
-                        value={subjectState}></input>
+                    type="text" 
+                    onChange={handleMailForm}
+                    value={subjectState}></input>
             
                 <label for="text">Text: </label>
-                <textarea name="mail" 
+                <textarea name="text" 
                     type="text"
                     cols="100"
                     rows="10"
@@ -186,9 +175,7 @@ const ProfessorStudents = (props) => {
             </form>
             </ModalBody>
         </Modal>
-
     </>   
-        
     )
 }
 

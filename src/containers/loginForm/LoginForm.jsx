@@ -16,8 +16,8 @@ class LoginForm extends Component {
   constructor(){
     super()  
     this.hasUser = false;
-
   }
+  
     state = INITIAL_STATE;
 
   handleSubmitForm = async ev => {
@@ -25,10 +25,13 @@ class LoginForm extends Component {
 
       try {
         const data = await login(this.state);
+        if(data.message === "user not found"){
+        }else{
         console.log('LOGIN COMPLETADO', data);
         this.props.logUser(data);
-              this.setState(INITIAL_STATE);
-      } catch(error) {
+        this.setState(INITIAL_STATE);
+        }
+      }catch(error) {
         this.setState({ error: error.message });
       }
   }
@@ -46,7 +49,6 @@ class LoginForm extends Component {
           {!this.state.hasUser &&
             <div className="b-loginform__container">
               <div className="b-loginform__container__img">
-
                 <img className="b-loginform__img" src="/images/papel.png" alt=""/>
               </div>
               <form className="b-loginform__form" onSubmit={this.handleSubmitForm}>
@@ -74,7 +76,6 @@ class LoginForm extends Component {
                 {this.state.error && <p style={{ color: 'red' }}>
                   Ha ocurrido un error: {this.state.error}
                 </p>}
-
                 <div style={{ marginTop: '20px' }}>
                     <button className="b-loginform__button" type="submit">Login</button>
                 </div>

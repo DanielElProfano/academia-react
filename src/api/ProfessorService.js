@@ -2,8 +2,10 @@ const professorList = 'http://localhost:4000/professor/show';
 const handleProfessorURL = 'http://localhost:4000/professor/';
 const newProfessorURL = 'http://localhost:4000/professor/create';
 
+// const professorList = 'https://academy-react.herokuapp.com/professor/show';
+// const handleProfessorURL = 'https://academy-react.herokuapp.com/professor/';
+// const newProfessorURL = 'https://academy-react.herokuapp.com/professor/create';
 export const allProfessors = async() => {
-    
     const request = await fetch(professorList, {
       method: "GET",
       headers: {
@@ -20,7 +22,6 @@ export const allProfessors = async() => {
     }
     return response;
   }
-
   export const deleteProfessorService = async(id) => {
     
     const request = await fetch(`${handleProfessorURL}${id}/delete`, {

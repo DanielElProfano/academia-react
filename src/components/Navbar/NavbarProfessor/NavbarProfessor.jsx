@@ -2,7 +2,7 @@ import './NavbarProfessor.scss';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { faUserGraduate, faBookOpen} from '@fortawesome/free-solid-svg-icons';
+import { faBookOpen} from '@fortawesome/free-solid-svg-icons';
 const NavbarProfessor = (props) => {
     return(
         
