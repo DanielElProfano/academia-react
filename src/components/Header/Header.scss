@@ -6,6 +6,12 @@
     align-items: center;
     box-shadow: 1px 5px 10px rgba(73, 27, 0, 0.63);
 
+    &__image{
+        width: 70px;
+        height: 70px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
     &__left{
         flex: 1;
         padding: 2rem;

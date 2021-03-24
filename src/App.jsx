@@ -35,9 +35,9 @@ const App = () =>{
   const checkSessionUser = async() => {
     try{
       const data = await checkSession();
-          delete data.password;
-          setLogUser(data);
-          setHasUser(true);
+      delete data.password;
+      setLogUser(data);
+      setHasUser(true);
      
     }catch(error){
       console.log(error)

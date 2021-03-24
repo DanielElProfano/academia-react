@@ -23,6 +23,13 @@
         text-align: center;
     }
 }
+.b-card__row{
+    border-bottom: 1px solid gray;
+}
+.b-checkbox{
+    height: 2rem;
+    width: 2rem;
+}
 .b-course__title{
     margin-top: 4rem;
     text-align: center;

@@ -5,8 +5,13 @@ const AddStdToCourseCard = (props) => {
 
     const {name, _id, lastName, courses} = props.student;
 
-    const onCheck = () => {
-        props.checked(_id);
+    const onCheck = (event) => {
+        const {id} = event.target;
+        const courseId = {
+            idCourse: _id,
+            checkId: id
+        }
+        props.checked(courseId);
     }
 
     return(
@@ -14,7 +19,7 @@ const AddStdToCourseCard = (props) => {
         <td>
             <form id="myForm">
                 <label for="check"></label>
-                <input id = "check" type="checkbox" onClick={onCheck}></input>
+                <input className="b-checkbox" id = {`check_course_id_${props.index}`} type="checkbox" onClick={onCheck}></input>
             </form>
         </td>
             <td className="b-table__content">{ name }</td>

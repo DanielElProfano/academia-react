@@ -1,10 +1,10 @@
-const studentList = 'http://localhost:4000/student/show';
-const handleStudentURL = 'http://localhost:4000/student/';
-const newStudentURL= 'http://localhost:4000/student/create'
+// const studentList = 'http://localhost:4000/student/show';
+// const handleStudentURL = 'http://localhost:4000/student/';
+// const newStudentURL= 'http://localhost:4000/student/create'
 
-// const studentList = 'https://academy-react.herokuapp.com/student/show';
-// const handleStudentURL = 'https://academy-react.herokuapp.com/student/';
-// const newStudentURL= 'https://academy-react.herokuapp.com/student/create';
+const studentList = 'https://academy-react.herokuapp.com/student/show';
+const handleStudentURL = 'https://academy-react.herokuapp.com/student/';
+const newStudentURL= 'https://academy-react.herokuapp.com/student/create';
 
 export const allStudents = async() => {
     

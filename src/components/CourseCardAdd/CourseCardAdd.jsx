@@ -1,32 +1,37 @@
-import { useEffect } from 'react';
 import './CourseCardAdd';
-
 
 const CourseCardAdd = (props) => {
 
     const {name, _id, professors} = props.course;
-    useEffect (()=>{
-        document.getElementById("myForm").reset();
-    },[]);
-    
-    const onCheck = () => {
-        props.checked(_id);
+
+    const onCheck = (event) => {
+        const {id} = event.target;
+        const selected = {
+            id: _id,
+            checkId: id
+        }
+        props.check(selected);
     }
 
     return(
-        <>
-            <td>
-                <form id="myForm">
+        <>  
+            <td className="b-table__content">
+                <form id={`myForm_check_${props.index}`}>
                     <label for="check"></label>
-                    <input type="checkbox" onClick={onCheck}></input>
+                    <input
+                        id = {props.index}
+                        className="b-checkbox" 
+                        type="checkbox" 
+                        onClick={onCheck}>
+                    </input>
                 </form>
             </td>
             <td className="b-table__content">{ name }</td>
             <td className="b-table__content">
                 {professors.map(professor => {
                 return ( 
-                    <span key={professor._id}>
-                    { professor.name }, </span>)}
+                    <p key={professor._id}>
+                    { professor.name }</p>)}
                 )}
             </td>
         </>  

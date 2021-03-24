@@ -1,5 +1,5 @@
-const utilsURL= 'http://localhost:4000/utils'
-// const utilsURL= 'https://academy-react.herokuapp.com/utils'
+// const utilsURL= 'http://localhost:4000/utils'
+const utilsURL= 'https://academy-react.herokuapp.com/utils'
 
 export const sendingEmail = async (email) => {
     const request = await fetch(`${utilsURL}/mail`,  { 

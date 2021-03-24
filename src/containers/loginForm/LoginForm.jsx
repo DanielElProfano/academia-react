@@ -9,30 +9,51 @@ const INITIAL_STATE = {
   mail: "",
   password: "",
   error: "",
+  message: ""
 };
-
 
 class LoginForm extends Component {
   constructor(){
     super()  
     this.hasUser = false;
   }
-  
+
     state = INITIAL_STATE;
+
+    validate = (email) => {
+      const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(String(email).toLowerCase());
+    };
+
 
   handleSubmitForm = async ev => {
       ev.preventDefault();
-
-      try {
-        const data = await login(this.state);
-        if(data.message === "user not found"){
-        }else{
-        console.log('LOGIN COMPLETADO', data);
-        this.props.logUser(data);
-        this.setState(INITIAL_STATE);
+      debugger
+      const emailIsValid = this.validate(this.state.mail)
+      if(emailIsValid && this.state.password !== ""){
+        try {
+          const data = await login(this.state);
+          this.props.logUser(data);
+          this.setState(INITIAL_STATE);
+        }catch(error) {
+          debugger
+          const {message} = error;
+          this.setState({ 
+            message,
+            error: "error" });
         }
-      }catch(error) {
-        this.setState({ error: error.message });
+      }else{
+        if(!emailIsValid){
+          this.setState({
+            error: true,
+            message: 'Introduzaca un email válido'
+          })
+        }else {
+          this.setState({
+            error: true,
+            message: 'Email o password Invalidos'
+          })
+        }
       }
   }
 
@@ -74,7 +95,7 @@ class LoginForm extends Component {
                 </label>
 
                 {this.state.error && <p style={{ color: 'red' }}>
-                  Ha ocurrido un error: {this.state.error}
+                  Ha ocurrido un error: {this.state.message}
                 </p>}
                 <div style={{ marginTop: '20px' }}>
                     <button className="b-loginform__button" type="submit">Login</button>

@@ -12,6 +12,7 @@ const AddStdToCourse = () => {
         const [listOfCourses, setListOfCourses] = useState();
         const [idStudentState, setIdStudent] = useState();
         const [checked, setChecked] = useState();
+        const [idCheck, setIdCheck] = useState();
     
         useEffect(() => { //cargar la lista de profesores
             studentList();
@@ -29,14 +30,15 @@ const AddStdToCourse = () => {
         }
 
         const isChecked = (idStudent) => {
-          
-            setIdStudent(idStudent);
+            const {idCourse, checkId} = idStudent;
+            setIdCheck(checkId);
+            setIdStudent(idCourse);
             setChecked(true);
         } 
         const onCheckCourse = async (idCourse) => {
             await addStudentService(idStudentState, idCourse,)
             setChecked(false)
-            document.getElementById("myForm").reset();
+            document.getElementById(idCheck).checked = false;
             studentList();
         }
 
@@ -56,10 +58,11 @@ const AddStdToCourse = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {listOfStudents && listOfStudents.map(student => {
+                    {listOfStudents && listOfStudents.map((student, index) => {
                         return (
                             <tr  className="b-tableadd__row" key={student._id}><AddStdToCourseCard 
                                 student={student}
+                                index={index}
                                 checked={isChecked}
                                 />
                             </tr>
