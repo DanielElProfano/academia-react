@@ -3,7 +3,7 @@ import { faTrash, faInfo, faTable} from '@fortawesome/free-solid-svg-icons';
 import './ProfessorCard.scss'
 
 const ProfessorCard = (props) => {
-    const { _id, age, lastName, mail, name, photo, rol, courses} = props.professor;
+    const { _id, age, lastName, mail, name, photo, rol, courses } = props.professor;
 
     const deleteProfessor = () =>{
         props.deleteProfessor(_id);
@@ -28,9 +28,11 @@ const ProfessorCard = (props) => {
                         { course.name }, </span>)}
               )}
             </td>
-            <td className="b-table__content">{ rol }</td>
+            <td className="b-table__content">{rol}</td>
             <td className="b-table__icon b-table__icon--mod" onClick={modifyProfessor}><FontAwesomeIcon icon={faTable} /></td>
-            <td className="b-table__icon b-table__icon--del" onClick={deleteProfessor}><FontAwesomeIcon icon={faTrash} /></td>
+            {props.index !== 0 ?
+                 <td className="b-table__icon b-table__icon--del" onClick={deleteProfessor}><FontAwesomeIcon icon={faTrash} /></td>
+                 :<td></td>}
             <td className="b-table__icon b-table__icon--dtl" onClick={detailsProfessor}><FontAwesomeIcon icon={faInfo}/></td>
         </>  
     )

@@ -85,10 +85,11 @@ const Professor  = (props) => {
                       </tr>
                 </thead>
                 <tbody>
-                    {listOfProfessors && listOfProfessors.map(professor => {
+                    {listOfProfessors && listOfProfessors.map((professor, index) => {
                         return (
                             <tr key={professor._id} className="b-table__row"><ProfessorCard 
                                 professor={professor}
+                                index={index}
                                 deleteProfessor={deleteProfessor}
                                 modifyProfessor={modifyProfessor}
                                 detailsProfessor={detailsProfessor}

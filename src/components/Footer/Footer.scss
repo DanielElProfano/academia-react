@@ -12,6 +12,22 @@
 //     }
 // }
 .b-footer {
+    position: fixed;
+    bottom: 0px;
     height: 70px;
+    width: 100%;
     background-color: #f1b686;;
+    &__icon{
+        width:30px;
+        height: 30px;
+    }
+    &__links{
+        display: flex;
+    }
+    &__description{
+        display:flex;
+        flex-direction: column;
+        margin-left: 2rem;
+        justify-content: center;
+    }
 }
